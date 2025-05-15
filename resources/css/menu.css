@@ -1,0 +1,122 @@
+body {
+    margin: 0;
+    padding-top: 60px; /* Espacio arriba */
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom right, #007BFF, #0056b3);
+    color: white;
+    text-align: center;
+}
+
+.menu-principal h1 {
+    margin-bottom: 40px;
+    font-size: 2rem;
+    color: #0056b3;
+}
+
+.container {
+    background-color: #e0f2ff; /* Azul claro para la caja */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    gap: 20px;
+    width: 100%;
+}
+
+.menu-ul li {
+    display: flex;
+    justify-content: center;
+}
+
+.menu-ul li a {
+    color: #333;
+    background-color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+    display: block;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.menu-ul li a:hover {
+    background-color: #f0f0f0;
+    text-decoration: none;
+}
+
+p {
+    margin-top: 20px;
+}
+
+p a {
+    color: #cce5ff;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+#logout {
+    margin-top: 20px;
+    color: black;
+    text-decoration: none;
+    font-size: 1.2rem;
+    text-align: center; /* Asegura que el texto de "Cerrar sesión" esté centrado */
+    width: 100%; /* Hace que el enlace ocupe el ancho completo */
+}
+
+#logout a {
+    display: block; /* Asegura que el enlace ocupe toda la línea */
+    text-align: center;
+    color: black;
+    text-decoration: none;
+}
+
+#logout a:hover {
+    text-decoration: underline;
+}
+
+
+.menu-ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 15px 0;
+}
+
+li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+}
+
+li a img {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+}
+
+#logout {
+    margin-top: 30px;
+}

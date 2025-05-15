@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom right, #007BFF, #0056b3);
+    padding: 20px;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+select, input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.producto-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.producto-item select,
+.producto-item input {
+    flex: 1;
+}
+
+.agregar-btn,
+.submit-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.agregar-btn {
+    background-color: #28a745;
+    margin-top: 5px;
+}
+
+.agregar-btn:hover {
+    background-color: #218838;
+}
+
+.submit-btn {
+    margin-top: 25px;
+    float: right;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.productos-label {
+    font-weight: bold;
+    margin: 15px 0 10px;
+    display: block;
+}

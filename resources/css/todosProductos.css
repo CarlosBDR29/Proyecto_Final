@@ -1,0 +1,141 @@
+body {
+    background: linear-gradient(to bottom right, #007BFF, #0056b3);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    margin-bottom: 110px; /* Separación del Navbar */
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    text-align: center;
+    color: #003b80;
+    margin-bottom: 25px;
+}
+
+form {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 25px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    font-size: 16px;
+}
+
+button[type="submit"] {
+    padding: 10px 15px;
+    border: none;
+    background-color: #003b80;
+    color: white;
+    font-size: 16px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.productos-wrapper {
+    max-height: 500px;
+    overflow-y: auto;
+    border-top: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+    padding: 10px 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.li-productos {
+    background-color: #eaf1ff;
+    margin-bottom: 20px;
+    padding: 20px;
+    font-size: 18px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #ccc;
+}
+
+.li-productos .producto-info {
+    display: flex;
+    gap: 30px;
+    font-weight: bold;
+    color: #003b80;
+}
+
+.li-productos span {
+    font-weight: bold;
+    color: #003b80;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.ver-detalles-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.ver-detalles-btn:hover {
+    background-color: #218838;
+}
+
+p {
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+}
+
+.form-crear-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+form {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.crear-btn {
+    background-color: #003b80;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.crear-btn:hover {
+    background-color: #0056b3;
+}

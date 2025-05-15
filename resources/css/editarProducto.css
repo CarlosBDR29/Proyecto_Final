@@ -1,0 +1,81 @@
+body {
+    background: linear-gradient(to bottom right, #007BFF, #0056b3);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 700px;
+    margin: 50px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.imagen-actual {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.imagen-actual img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #333;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+input[type="file"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.btn-guardar {
+    background-color: green;
+    color: white;
+}
+
+.btn-volver {
+    background-color: #003b80;
+    color: white;
+    margin-top: 15px;
+}

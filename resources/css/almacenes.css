@@ -1,0 +1,140 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom right, #007BFF, #0056b3);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Estilos generales del contenedor */
+#app {
+    background-color: #f4f7fb;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Títulos */
+h1 {
+    text-align: center;
+    color: #003b80;
+    margin-bottom: 20px;
+}
+
+/* Contenedor del formulario de búsqueda y creación */
+.form-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre el input y el botón */
+    margin-bottom: 20px; /* Espacio entre los formularios */
+}
+
+/* Input de búsqueda y nombre del almacén */
+input {
+    padding: 10px;
+    font-size: 1em;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+/* Botones al lado de los inputs */
+button {
+    padding: 10px 15px;
+    font-size: 1em;
+    border: none;
+    background-color: #003b80;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    white-space: nowrap; /* Evita que el texto del botón se corte */
+}
+
+/* Efecto hover en los botones */
+button:hover {
+    background-color: #005bb5;
+}
+
+/* Estilo para la lista de almacenes */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.li-almacen {
+    background-color: white;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Hacer que el nombre del almacén sea más visible */
+.li-almacen span.nombre-almacen {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #003b80; /* Color azul para el nombre */
+    margin-right: 10px;
+}
+
+/* Botones dentro de cada almacén con separación */
+.li-almacen button {
+    margin-left: 10px;
+}
+
+/* Contenedor para la lista y el formulario */
+.div-lista {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Ajuste para que el formulario de creación esté pegado a la lista */
+.form-container-create {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+
+/* Estilo para el mensaje "No tienes almacenes" */
+p.visto-no-almacenes {
+    font-size: 1.5em; /* Hacer el texto más grande */
+    font-weight: bold;
+    color: #e74c3c; /* Tono rojo */
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+
+div[style*="max-height"] {
+    margin-top: 20px;
+    background-color: #f5faff;
+    border-radius: 10px;
+}
+
+p {
+    text-align: center;
+    margin-top: 20px;
+}
