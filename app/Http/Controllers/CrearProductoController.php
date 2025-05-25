@@ -34,11 +34,12 @@ class CrearProductoController extends Controller
             ->where('Nombre_Alm', 'Almacén Entrada')
             ->first();
     
+        // Si el almacén no se encuentra, vuelve atrás con un mensaje de error
         if (!$almacenEntrada) {
             return redirect()->back()->with('error', 'No se encontró el almacén "Almacén Entrada" para este usuario.');
         }
     
-        // Insertar el producto y obtener su ID
+        // Inserta el producto en la base de datos y obtiene su ID
         $id = DB::table('Producto')->insertGetId([
             'Nombre_Pro' => $validated['Nombre_Pro'],
             'Descripcion' => $validated['Descripcion'],
@@ -53,7 +54,7 @@ class CrearProductoController extends Controller
             'Stock' => $validated['Stock']
         ]);
     
-        // Guardar la imagen si se subió
+        // Si se subió una imagen, se guarda en la carpeta "imagenes_productos" con el nombre del ID del producto
         if ($request->hasFile('Imagen')) {
             $nombreArchivo = $id . '.png';
             $request->file('Imagen')->move(public_path('imagenes_productos'), $nombreArchivo);

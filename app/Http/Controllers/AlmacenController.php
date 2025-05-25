@@ -23,11 +23,14 @@ class AlmacenController extends Controller
 
     public function crearAlmacen(Request $request)
     {
+        // Verifica que el usuario esté logueado (es decir, que exista 'usuario_id' en la sesión)
         if (!$request->session()->has('usuario_id')) {
             return response()->json(['success' => false, 'message' => 'No estás logueado.'], 403);
         }
 
+        // Obtiene el ID del usuario desde la sesión
         $usuarioId = $request->session()->get('usuario_id');
+        // Obtiene el nombre del almacén que se quiere crear 
         $nombre = $request->input('nombre');
 
         // Comprobar si ya existe un almacén con ese nombre para el mismo usuario
@@ -36,6 +39,7 @@ class AlmacenController extends Controller
             ->where('Nombre_Alm', $nombre)
             ->exists();
 
+        // Si ya existe un almacén con ese nombre, devuelve un error 409
         if ($existe) {
             return response()->json([
                 'success' => false,
@@ -43,7 +47,7 @@ class AlmacenController extends Controller
             ], 409);
         }
 
-        // Crear nuevo almacén
+        // Inserta el nuevo almacén en la base de datos y guarda su ID
         $almacenId = DB::table('Almacen')->insertGetId([
             'Nombre_Alm' => $nombre,
             'Id_Usu' => $usuarioId,

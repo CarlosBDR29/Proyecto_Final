@@ -72,11 +72,13 @@ class ProductoController extends Controller
             return redirect()->back()->with('error', 'No se encontró el almacén en sesión.');
         }
 
+        // Busca el producto en la tabla Almacen_Producto según el producto y el almacén
         $producto = DB::table('Almacen_Producto')
             ->where('Id_Pro', $request->Id_Pro)
             ->where('Id_Alm', $almacenId)
             ->first();
 
+        // Si existe el producto, actualiza su stock sumando la cantidad recibida
         if ($producto) {
             DB::table('Almacen_Producto')
                 ->where('Id_Pro', $request->Id_Pro)
@@ -100,17 +102,20 @@ class ProductoController extends Controller
         if (!$almacenId) {
             return redirect()->back()->with('error', 'No se encontró el almacén en sesión.');
         }
-
+        // Busca el producto en la tabla Almacen_Producto según el producto y el almacén
         $producto = DB::table('Almacen_Producto')
             ->where('Id_Pro', $request->Id_Pro)
             ->where('Id_Alm', $almacenId)
             ->first();
 
         if ($producto) {
+
+            // Verifica que no se quiera disminuir más stock del que hay
             if ($request->cantidad > $producto->Stock) {
                 return redirect()->back()->with('error', 'No puedes disminuir más stock del que hay disponible.');
             }
 
+            // Calcula el nuevo stock y actualiza en la base de datos
             $nuevoStock = $producto->Stock - $request->cantidad;
 
             DB::table('Almacen_Producto')
@@ -141,10 +146,12 @@ class ProductoController extends Controller
 
     public function editar(Request $request)
     {
+        // Verifica si hay un producto seleccionado en la sesión
         if (!$request->session()->has('producto_id')) {
             return redirect('/almacen')->with('error', 'No se ha seleccionado un producto.');
         }
 
+        // Busca el producto en la base de datos usando el ID de sesión
         $producto = DB::table('Producto')->where('Id_Pro', session('producto_id'))->first();
 
         return view('editar_producto', ['producto' => $producto]);
@@ -159,6 +166,7 @@ class ProductoController extends Controller
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
+        // Actualiza los campos del producto en la base de datos
         DB::table('Producto')
             ->where('Id_Pro', $request->Id_Pro)
             ->update([
@@ -167,18 +175,23 @@ class ProductoController extends Controller
                 'Precio' => $request->Precio,
             ]);
 
+        // Si se ha subido una nueva imagen, se guarda (sobrescribe si ya existía)
         if ($request->hasFile('imagen')) {
             $imagen = $request->file('imagen');
             $nombre = $request->Id_Pro . '.png';
             $imagen->move(public_path('imagenes_productos'), $nombre);
         }
 
+        // Se obtiene la ruta a la que se redirigirá desde 
+        //la sesión porque este metodo se usa en dos vistas
         $destino = $request->session()->get('destino_producto');
 
+        // Si el destino es "ProductoTotal", redirige a esa ruta
         if ($destino == "ProductoTotal") {
             return redirect('/producto_total');
         }
 
+        // Por defecto, redirige a la vista de producto
         return redirect('/producto');
     }
 
@@ -195,6 +208,7 @@ class ProductoController extends Controller
             return back()->with('error', 'El almacén destino debe ser distinto al de origen.');
         }
 
+        // Consultar el stock actual del producto en el almacén de origen
         $stockOrigen = DB::table('Almacen_Producto')
             ->where('Id_Alm', $idOrigen)
             ->where('Id_Pro', $idProducto)
@@ -204,6 +218,7 @@ class ProductoController extends Controller
             return back()->with('error', 'No se encontró el producto en el almacén de origen.');
         }
 
+        // Verificar que haya suficiente stock disponible para mover
         if ($cantidad > $stockOrigen) {
             return back()->with('error', 'No puedes mover más cantidad de la que hay en stock.');
         }
@@ -215,18 +230,20 @@ class ProductoController extends Controller
                 ->where('Id_Pro', $idProducto)
                 ->decrement('Stock', $cantidad);
 
-            // Añadir stock en el almacén destino
+            // Verificar si el producto ya existe en el almacén destino
             $existeDestino = DB::table('Almacen_Producto')
                 ->where('Id_Alm', $idDestino)
                 ->where('Id_Pro', $idProducto)
                 ->exists();
 
             if ($existeDestino) {
+                // Si existe, incrementar el stock
                 DB::table('Almacen_Producto')
                     ->where('Id_Alm', $idDestino)
                     ->where('Id_Pro', $idProducto)
                     ->increment('Stock', $cantidad);
             } else {
+                // Si no existe, insertar un nuevo registro
                 DB::table('Almacen_Producto')->insert([
                     'Id_Alm' => $idDestino,
                     'Id_Pro' => $idProducto,

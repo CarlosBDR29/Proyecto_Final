@@ -14,9 +14,13 @@ class ProveedorProductoController extends Controller
     {
         $id = $request->Id_Proveedor;
 
+        // Buscar el proveedor en la base de datos, si no existe lanza error 404
         $proveedor = Proveedor::findOrFail($id);
+
+        // Obtener todos los productos del usuario actual
         $productos = Producto::where('Id_Usu', session('usuario_id'))->get();
 
+        // Obtener los productos ya asignados al proveedor, con su precio
         $productosAsignados = DB::table('Proveedor_Producto')
             ->where('Id_Prove', $id)
             ->pluck('Precio_Unidad_Prove', 'Id_Pro')
@@ -30,8 +34,10 @@ class ProveedorProductoController extends Controller
     {
         $id = $request->Id_Proveedor;
 
+        // Eliminar todas las asignaciones actuales del proveedor (limpiar antes de volver a insertar)
         DB::table('Proveedor_Producto')->where('Id_Prove', $id)->delete();
 
+        // Volver a insertar los productos elegidos
         if ($request->productos) {
             foreach ($request->productos as $index => $productoId) {
                 $precio = $request->precios[$index];

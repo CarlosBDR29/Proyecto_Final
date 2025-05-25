@@ -74,17 +74,21 @@ class PedidoController extends Controller
 
         // Para cada línea, sumar la cantidad al stock del producto en ese almacén
         foreach ($lineas as $linea) {
+
+            // Comprobar si ese producto ya existe en el almacén
             $existe = DB::table('Almacen_Producto')
                 ->where('Id_Alm', $almacenEntrada)
                 ->where('Id_Pro', $linea->Id_Pro)
                 ->exists();
 
             if ($existe) {
+                // Si ya existe, aumentar el stock
                 DB::table('Almacen_Producto')
                     ->where('Id_Alm', $almacenEntrada)
                     ->where('Id_Pro', $linea->Id_Pro)
                     ->increment('Stock', $linea->Cantidad);
             } else {
+                // Si no existe, insertar un nuevo registro con el stock inicial
                 DB::table('Almacen_Producto')->insert([
                     'Id_Alm' => $almacenEntrada,
                     'Id_Pro' => $linea->Id_Pro,
@@ -186,6 +190,7 @@ class PedidoController extends Controller
     {
         $usuarioId = session('usuario_id');
 
+        // Crear una nueva cabecera de pedido
         $cabecera = new Cabecera_Pedido();
         $cabecera->Fecha_Ped = now();
         $cabecera->Estado = 'Pendiente';
@@ -193,10 +198,12 @@ class PedidoController extends Controller
         $cabecera->Id_Usu = $usuarioId;
         $cabecera->save();
 
+        // Recoger los datos del formulario
         $productos = $request->input('productos', []);
         $cantidades = $request->input('cantidades', []);
         $precios = $request->input('precios', []);
 
+        // Recorrer los productos y guardar las líneas del pedido
         foreach ($productos as $index => $idProducto) {
             if ($idProducto && isset($cantidades[$index]) && isset($precios[$index])) {
                 $linea = new Linea_Pedido();

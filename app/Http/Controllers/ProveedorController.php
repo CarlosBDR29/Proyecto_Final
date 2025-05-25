@@ -46,6 +46,7 @@ class ProveedorController extends Controller
 
         $usuario_id = $request->session()->get('usuario_id');
 
+        // Insertar el nuevo proveedor en la base de datos
         DB::table('Proveedor')->insert([
             'Nombre_Prove' => $request->Nombre_Prove,
             'CIF' => $request->CIF,
