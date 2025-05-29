@@ -17,4 +17,12 @@ export default defineConfig({
             '@': path.resolve(__dirname, 'resources/js'),
         },
     },
+    server: {
+        host: '0.0.0.0', // Escucha en todas las interfaces
+        port: 5173,      // Asegúrate de que esté libre
+        hmr: {
+            //Cambiar por Dirección IPv4 actual
+            host: '192.168.0.22',
+        },
+    }
 });
